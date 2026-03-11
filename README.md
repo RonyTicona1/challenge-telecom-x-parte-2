@@ -13,14 +13,17 @@ Objetivo principal:
 ## Estructura del proyecto
 
 - `TelecomX_Parte2_Modelos_Churn.ipynb`: notebook principal de modelado, evaluacion e interpretacion.
-- `datos_tratados.csv`: dataset tratado de la Parte 1 (si no existe, el notebook lo genera de forma consistente desde `TelecomX_Data.json`).
+- `datos_tratados.csv`: dataset tratado para modelado. Si no existe, el notebook lo reconstruye y lo genera automaticamente.
+- `TelecomX_Data.json`: respaldo del dataset fuente para ejecucion en Colab/local cuando no hay CSV tratado.
 
 ## Preparacion de datos para modelado
 
 1. Carga del archivo tratado:
 
-- Se prioriza el CSV tratado de Parte 1 para mantener continuidad analitica.
-- Si no existe, se reconstruye con el mismo criterio de ETL de Parte 1 y se exporta como `datos_tratados.csv`.
+- Prioridad de carga: `datos_tratados.csv` local.
+- Si falta, se intenta `TelecomX_Data.json` local (subido junto al notebook).
+- Si tambien falta, se usa un fallback remoto (`TelecomX_Data.json` desde GitHub).
+- En cualquiera de esos casos de fallback, se reconstruye ETL de Parte 1 y se exporta `datos_tratados.csv`.
 
 2. Eliminacion de columnas irrelevantes:
 
@@ -94,9 +97,10 @@ El notebook finaliza con un resumen ejecutivo automatico que:
 ## Como ejecutar
 
 1. Abre `TelecomX_Parte2_Modelos_Churn.ipynb`.
-2. Ejecuta celdas en orden desde la primera hasta la ultima.
-3. Revisa tablas de metricas, matrices de confusion e importancia de variables.
-4. Usa la conclusion final para justificar decisiones de negocio.
+2. Si trabajas en Colab, sube al entorno al menos uno de estos archivos: `datos_tratados.csv` o `TelecomX_Data.json`.
+3. Ejecuta celdas en orden desde la primera hasta la ultima.
+4. Revisa tablas de metricas, matrices de confusion e importancia de variables.
+5. Usa la conclusion final para justificar decisiones de negocio.
 
 ## Dependencias
 
